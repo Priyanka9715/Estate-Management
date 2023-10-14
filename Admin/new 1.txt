@@ -1,0 +1,52 @@
+if($count>0)
+{
+	$sl=0;
+while($row0=mysqli_fetch_array($query_run0))
+{
+	$sl+=1;
+	$id=$row0[0];
+	$date=$row0[1];
+	$expense=$row0[2];
+	$reason=$row0[3];
+	?>
+	
+<tr>
+<th><?php echo $sl; ?>.</th>
+<th><?php echo $date; ?>.</th>
+<th><?php echo $reason; ?></th>
+<td><?php echo $expense; ?></td>
+<td><a href="upex.php?deleid=<?php echo $id; ?>"><button style="background-color:red; color:white;">Delete</button></a></td>
+</tr>
+<?php
+}
+}
+?>
+<?php
+include("config.php");
+if(isset($_GET['deleid']))
+{
+$delid=$_GET['deleid'];
+
+$sql = "delete from expenses where id='".$deleid."'";
+$query_run = mysqli_query($con,$sql);
+if($query_run)
+{ 
+echo "<script>
+alert('EXPENSES DELETED');
+</script>";
+echo "<script> location.href='upex.php'; </script>";
+}
+}
+
+?>
+</table>
+</center>
+</form>
+<br><br>
+
+
+
+
+
+
+DELETE FROM `expenses` WHERE `expenses`.`id` = 7
